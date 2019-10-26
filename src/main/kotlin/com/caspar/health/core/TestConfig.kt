@@ -15,7 +15,6 @@ import java.net.URL
         "classpath:config.properties")      // default predefined environments (TODO: doesn't work with classpath, please see above)
 interface TestConfig : Config {
     @Key("env")
-    @DefaultValue("dev")
     fun env(): String
 
     @Key("\${env}.platform")
@@ -104,6 +103,7 @@ interface TestConfig : Config {
     /* API */
 
     @Key("\${env}.api.baseURI")
+    @DefaultValue("https://beta.caspar-health.com/api/v1/")
     fun baseApiURI(): String
 
     @Key("\${env}.api.contentType")

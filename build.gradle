@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+}
+
+group 'com.caspar.health'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+    implementation 'org.junit.jupiter:junit-jupiter-params:5.5.2'
+    implementation 'com.codeborne:selenide:5.3.1'
+    implementation 'io.appium:java-client:7.2.0'
+    implementation 'org.aeonbits.owner:owner:1.0.10'
+    implementation 'io.rest-assured:rest-assured:4.1.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    systemProperties = System.getProperties()
+    outputs.upToDateWhen { false }
+    maxParallelForks = Runtime.runtime.availableProcessors()
+}
+
+//tasks.withType(Test) {
+//    systemProperties = System.getProperties()
+//}
